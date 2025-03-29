@@ -10,9 +10,9 @@ public class Tienda {
         this.totalVentas = 0;
     }
 
-    public void agregarProductoACarrito(Usuario usuario, Producto producto, int cantidad, ReglaPrecio regla) {
+    public void agregarProductoACarrito(Usuario usuario, Producto producto, int cantidad) {
         if (producto.tieneUnidades(cantidad)) {
-            usuario.agregarItemACarrito(producto, cantidad, regla);
+            usuario.agregarItemACarrito(producto, cantidad);
             producto.descontarUnidades(cantidad);
         } else {
             System.out.println("No hay suficientes unidades disponibles");

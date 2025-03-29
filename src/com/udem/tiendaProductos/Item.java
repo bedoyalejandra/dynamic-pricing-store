@@ -5,16 +5,19 @@ public class Item {
     private int cantidad;
     private ReglaPrecio reglaPrecio;
 
-    public Item(Producto producto, int cantidad, ReglaPrecio reglaPrecio) {
+    public Item(Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
-        this.reglaPrecio = reglaPrecio;
+        ManejadorReglas manejador = new ManejadorReglas();
+
+        this.reglaPrecio = manejador.obtenerReglaPrecio(producto.getSku());
     }
 
     public float calcularTotal() {
         return reglaPrecio.calcularTotal(cantidad, producto.getPrecioUnitario());
     }
 
-    public Producto getProducto() { return producto; }
+    public Producto getProducto() {
+        return producto;
+    }
 }
-

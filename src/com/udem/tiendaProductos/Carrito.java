@@ -5,8 +5,8 @@ import java.util.List;
 public class Carrito {
     private List<Item> items = new ArrayList<>();
 
-    public void agregarItem(Producto producto, int cantidad, ReglaPrecio regla) {
-        items.add(new Item(producto, cantidad, regla));
+    public void agregarItem(Producto producto, int cantidad) {
+        items.add(new Item(producto, cantidad));
     }
 
     public void borrarItem(Item item) {

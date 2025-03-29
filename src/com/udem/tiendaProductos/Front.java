@@ -76,6 +76,8 @@ public class Front {
                         } else {
                             Item itemSeleccionado = items.get(itemIndex - 1);
                             tienda.eliminarItemDeCarrito(usuario, itemSeleccionado);
+                            int cantidadProducto = productoSeleccionado.getUnidadesDisponibles();
+                            productoSeleccionado.setUnidadesDisponibles(cantidadProducto+cantidad);
                             System.out.println("Producto eliminado correctamente.");
 
                             // Mostrar resumen actualizado

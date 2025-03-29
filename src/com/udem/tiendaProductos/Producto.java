@@ -23,6 +23,18 @@ public class Producto {
         unidadesDisponibles -= cantidad;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public int getUnidadesDisponibles() {
+        return unidadesDisponibles;
+    }
+
     public String getSku() {
         return sku;
     }

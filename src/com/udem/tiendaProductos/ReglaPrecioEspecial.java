@@ -1,29 +1,19 @@
 package com.udem.tiendaProductos;
 
 public class ReglaPrecioEspecial implements ReglaPrecio {
-    private String sku;
-    private float precioEspecial;
-    private int cantidadMinima;
-    
-    public ReglaPrecioEspecial(String sku, float precioEspecial, int cantidadMinima) {
-        this.sku = sku;
-        this.precioEspecial = precioEspecial;
-        this.cantidadMinima = cantidadMinima;
-    }
-    
+    private static final String SKU = "SP";
+    private static final float DESCUENTO_POR_TRES = 0.2f;     // 20%
+    private static final float DESCUENTO_MAXIMO = 0.5f;       // 50%
+
     @Override
     public Boolean esAplicable(String sku) {
-        return this.sku.equals(sku);
+        return sku.startsWith(SKU);
     }
-    
+
     @Override
-    public float calcularTotal(int cantidad, float precio) {
-        if (cantidad >= cantidadMinima) {
-            return cantidad * precioEspecial;
-        } else {
-            return cantidad * precio;
-        }
-
-    }        //return cantidad * precio; // Si no se cumple la regla, se aplica el precio normal
-
+    public float calcularTotal(int cantidad, float precioUnitario) {
+        int setsOfThree = cantidad / 3;
+        float porcentajeDescuento = Math.min(setsOfThree * DESCUENTO_POR_TRES, DESCUENTO_MAXIMO);
+        return cantidad * precioUnitario * (1 - porcentajeDescuento);
+    }
 }

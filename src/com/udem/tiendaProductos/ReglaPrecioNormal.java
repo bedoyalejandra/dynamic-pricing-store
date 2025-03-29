@@ -1,10 +1,11 @@
 package com.udem.tiendaProductos;
 
 public class ReglaPrecioNormal implements ReglaPrecio {
+    private static final String SKU = "EA";
 
     @Override
     public Boolean esAplicable(String sku) {
-        return sku.startsWith("EA");
+        return sku.startsWith(SKU);
     }
 
     @Override

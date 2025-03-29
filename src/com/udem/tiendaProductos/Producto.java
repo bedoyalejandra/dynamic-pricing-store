@@ -23,7 +23,11 @@ public class Producto {
         unidadesDisponibles -= cantidad;
     }
 
-    public String getSku() { return sku; }
-    public float getPrecioUnitario() { return precioUnitario; }
-}
+    public String getSku() {
+        return sku;
+    }
 
+    public float getPrecioUnitario() {
+        return precioUnitario;
+    }
+}

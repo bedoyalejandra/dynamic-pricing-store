@@ -1,30 +1,24 @@
 package com.udem.tiendaProductos;
 
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Front {
 
-    private static final List<Producto> productosDisponibles = new ArrayList<>();
-
-    static {
-        productosDisponibles.add(new Producto("EA001", "Arroz Diana", "Arroz blanco", 100, 2500));
-        productosDisponibles.add(new Producto("WE002", "Queso parmesano", "Queso por peso", 50, 0.02f)); // precio por gramo
-        productosDisponibles.add(new Producto("SP003", "Cereal Azucarado", "Caja de cereal", 30, 5000));
-    }
+    
 
     public static void main(String[] args) {
+        Tienda tienda = new Tienda();
+        Usuario usuario = new Usuario();
         Scanner scanner = new Scanner(System.in);
-        ManejadorReglas manejador = new ManejadorReglas();
 
-        List<Item> carrito = new ArrayList<>();
         System.out.println("=== BIENVENIDO A LA TIENDA ===");
 
         boolean continuar = true;
 
         while (continuar) {
             // Mostrar productos
+            List<Producto> productosDisponibles = tienda.getProductos();
             System.out.println("\nProductos disponibles:");
             for (int i = 0; i < productosDisponibles.size(); i++) {
                 Producto p = productosDisponibles.get(i);
@@ -43,36 +37,18 @@ public class Front {
             System.out.print("Ingrese la cantidad (en kilogramos si es por peso): ");
             int cantidad = scanner.nextInt();
 
-            if (cantidad > productoSeleccionado.getUnidadesDisponibles()) {
-                System.out.println("No hay suficientes unidades disponibles.");
-                continue;
-            }
-
-            // Crear ítem (usa internamente el manejador de reglas)
-            Item item = new Item(productoSeleccionado, cantidad);
-            carrito.add(item);
-
+            tienda.agregarProductoACarrito(usuario, productoSeleccionado, cantidad);
+    
             // Actualizar unidades disponibles
-            productoSeleccionado.descontarUnidades(cantidad);
-
-            System.out.println("Producto agregado: " + productoSeleccionado.getNombre() + " x" + cantidad);
-            System.out.printf("Subtotal: $%.2f%n", item.calcularTotal());
-
+            usuario.getCarrito().imprimirResumen();
             System.out.print("\n¿Desea agregar otro producto? (s/n): ");
             String respuesta = scanner.next();
             continuar = respuesta.equalsIgnoreCase("s");
         }
 
         // Mostrar total final
-        float total = 0;
         System.out.println("\n=== RESUMEN DEL CARRITO ===");
-        for (Item item : carrito) {
-            float subtotal = item.calcularTotal();
-            System.out.println(item.getProducto().getNombre() + ": $" + subtotal);
-            total += subtotal;
-        }
-
-        System.out.printf("TOTAL COMPRA: $%.2f%n", total);
+        tienda.finalizarCompra(usuario);
         System.out.println("¡Gracias por su compra!");
         scanner.close();
     }

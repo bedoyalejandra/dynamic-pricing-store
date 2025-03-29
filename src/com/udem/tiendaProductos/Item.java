@@ -20,4 +20,8 @@ public class Item {
     public Producto getProducto() {
         return producto;
     }
+
+    public int getCantidad() {
+        return cantidad;
+    }
 }

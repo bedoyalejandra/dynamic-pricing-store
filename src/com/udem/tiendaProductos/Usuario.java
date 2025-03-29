@@ -1,13 +1,18 @@
 package com.udem.tiendaProductos;
 
 public class Usuario {
+    private Carrito carrito = new Carrito();
 
-    public static void agregarItemCarrito(Producto producto, int cantidad) {
-        // Implementar la lógica para agregar un producto al carrito
+    public void agregarItemACarrito(Producto producto, int cantidad, ReglaPrecio regla) {
+        carrito.agregarItem(producto, cantidad, regla);
     }
 
-    public static void borrarItemDeCarrito(Item item) {
-        // Implementar la lógica para eliminar un producto del carrito
+    public void borrarItemDeCarrito(Item item) {
+        carrito.borrarItem(item);
     }
 
+    public Carrito getCarrito() {
+        return carrito;
+    }
 }
+

@@ -1,6 +1,8 @@
 package com.udem.tiendaProductos;
 
 public class Item {
+    ManejadorReglas manejador = new ManejadorReglas();
+    
     private Producto producto;
     private int cantidad;
     private ReglaPrecio reglaPrecio;
@@ -8,7 +10,6 @@ public class Item {
     public Item(Producto producto, int cantidad) {
         this.producto = producto;
         this.cantidad = cantidad;
-        ManejadorReglas manejador = new ManejadorReglas();
 
         this.reglaPrecio = manejador.obtenerReglaPrecio(producto.getSku());
     }

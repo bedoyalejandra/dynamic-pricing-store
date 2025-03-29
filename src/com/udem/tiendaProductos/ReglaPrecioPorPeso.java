@@ -1,17 +1,16 @@
 package com.udem.tiendaProductos;
 
 public class ReglaPrecioPorPeso implements ReglaPrecio {
-    private static final String SKU = "PESO";
-    private static final float PRECIO_POR_KILO = 10.0f; // Precio por kilo
+
+    private static final String SKU = "WE";
 
     @Override
     public Boolean esAplicable(String sku) {
-        return SKU.equals(sku);
+        return sku.startsWith(SKU);
     }
 
     @Override
-    public float calcularTotal(int cantidad, float precio) {
-        return cantidad * PRECIO_POR_KILO;
+    public float calcularTotal(int cantidad, float precioUnitario) {
+        return cantidad * precioUnitario; // cantidad en gramos
     }
-
 }

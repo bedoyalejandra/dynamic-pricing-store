@@ -10,13 +10,13 @@ public class Front {
 
     static {
         productosDisponibles.add(new Producto("EA001", "Arroz Diana", "Arroz blanco", 100, 2500));
-        productosDisponibles.add(new Producto("WE002", "Queso parmesano", "Queso por peso", 50, 0.02f)); // precio por gramo
+        productosDisponibles.add(new Producto("WE002", "Queso parmesano", "Queso por peso", 50, 0.02f)); // precio por
+                                                                                                         // gramo
         productosDisponibles.add(new Producto("SP003", "Cereal Azucarado", "Caja de cereal", 30, 5000));
     }
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        ManejadorReglas manejador = new ManejadorReglas();
 
         List<Item> carrito = new ArrayList<>();
         System.out.println("=== BIENVENIDO A LA TIENDA ===");
@@ -28,7 +28,8 @@ public class Front {
             System.out.println("\nProductos disponibles:");
             for (int i = 0; i < productosDisponibles.size(); i++) {
                 Producto p = productosDisponibles.get(i);
-                System.out.println((i + 1) + ". " + p.getNombre() + " (SKU: " + p.getSku() + ") - $" + p.getPrecioUnitario());
+                System.out.println(
+                        (i + 1) + ". " + p.getNombre() + " (SKU: " + p.getSku() + ") - $" + p.getPrecioUnitario());
             }
 
             System.out.print("Seleccione un producto por número: ");
@@ -40,7 +41,13 @@ public class Front {
 
             Producto productoSeleccionado = productosDisponibles.get(opcion - 1);
 
-            System.out.print("Ingrese la cantidad (en kilogramos si es por peso): ");
+            System.out.print("Ingrese la cantidad");
+            if (productoSeleccionado.getSku().startsWith("WE")) {
+                System.out.print(" (en kilogramos): ");
+            } else {
+                System.out.print(" (en unidades): ");
+            }
+
             int cantidad = scanner.nextInt();
 
             if (cantidad > productoSeleccionado.getUnidadesDisponibles()) {

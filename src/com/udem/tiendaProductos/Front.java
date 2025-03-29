@@ -22,7 +22,8 @@ public class Front {
             System.out.println("\nProductos disponibles:");
             for (int i = 0; i < productosDisponibles.size(); i++) {
                 Producto p = productosDisponibles.get(i);
-                System.out.println((i + 1) + ". " + p.getNombre() + " (SKU: " + p.getSku() + ") - $" + p.getPrecioUnitario());
+                System.out.println(
+                        (i + 1) + ". " + p.getNombre() + " (SKU: " + p.getSku() + ") - $" + p.getPrecioUnitario());
             }
 
             System.out.print("Seleccione un producto por número: ");
@@ -34,7 +35,13 @@ public class Front {
 
             Producto productoSeleccionado = productosDisponibles.get(opcion - 1);
 
-            System.out.print("Ingrese la cantidad (en kilogramos si es por peso): ");
+            System.out.print("Ingrese la cantidad");
+            if (productoSeleccionado.getSku().startsWith("WE")) {
+                System.out.print(" (en kilogramos): ");
+            } else {
+                System.out.print(" (en unidades): ");
+            }
+
             int cantidad = scanner.nextInt();
 
             tienda.agregarProductoACarrito(usuario, productoSeleccionado, cantidad);

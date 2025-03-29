@@ -48,9 +48,32 @@ public class Front {
     
             // Actualizar unidades disponibles
             usuario.getCarrito().imprimirResumen();
-            System.out.print("\n¿Desea agregar otro producto? (s/n): ");
-            String respuesta = scanner.next();
-            continuar = respuesta.equalsIgnoreCase("s");
+            System.out.print("\n1. ¿Desea agregar otro producto?: ");
+            System.out.print("\n2. ¿Desea eliminar un producto?: ");
+            System.out.print("\n3. Finalizar compra: ");
+            int respuesta = scanner.nextInt();
+            if (respuesta == 1) {
+               continuar = true;
+            }
+            else 
+            if (respuesta == 2) {
+              System.out.println("\n¿Que item desea eliminar?: ");
+              int itemIndex = scanner.nextInt();
+              List <Item> items = usuario.getCarrito().getItems();
+              if (itemIndex < 1 || itemIndex > items.size()) {
+                System.out.println("Opción no válida.");
+                continue;
+            }
+            Item itemSeleccionado = items.get(itemIndex);
+            tienda.eliminarItemDeCarrito(usuario, itemSeleccionado);
+            System.out.print("\n Finalizar compra: s/n");
+            String respuestaDos = scanner.next();
+            continuar = respuestaDos.equalsIgnoreCase("s");
+            }
+            else 
+            if(respuesta == 3) {
+               continuar = false;
+            }
         }
 
         // Mostrar total final

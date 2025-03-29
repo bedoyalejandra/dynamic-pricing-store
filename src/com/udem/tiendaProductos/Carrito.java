@@ -28,19 +28,24 @@ public class Carrito {
     public void imprimirResumen() {
         System.out.println("Resumen del carrito:");
         System.out.println("--------------------");
+
+        int index = 1; // Índice para cada ítem
         for (Item item : items) {
             Producto producto = item.getProducto();
             float precioUnitario = producto.getPrecioUnitario();
             int cantidad = item.getCantidad();
             float totalItem = item.calcularTotal();
 
-            System.out.printf("Producto: %s%n", producto.getNombre());
-            System.out.printf("SKU: %s%n", producto.getSku());
-            System.out.printf("Cantidad: %d%n", cantidad);
-            System.out.printf("Precio unitario: $%.2f%n", precioUnitario);
-            System.out.printf("Total por producto: $%.2f%n", totalItem);
+            System.out.printf("[%d] Producto: %s%n", index, producto.getNombre());
+            System.out.printf("    SKU: %s%n", producto.getSku());
+            System.out.printf("    Cantidad: %d%n", cantidad);
+            System.out.printf("    Precio unitario: $%.2f%n", precioUnitario);
+            System.out.printf("    Total por producto: $%.2f%n", totalItem);
             System.out.println("--------------------");
+            
+            index++; // Incrementamos el índice
         }
+
         System.out.printf("TOTAL A PAGAR: $%.2f%n", calcularTotal());
     }
 } 

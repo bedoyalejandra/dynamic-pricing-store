@@ -23,8 +23,10 @@ public class Tienda {
         }
     }
 
-    public void eliminarItemDeCarrito(Usuario usuario, Item item) {
+    public void eliminarItemDeCarrito(Usuario usuario, Item item,Producto producto, int cantidad) {
         usuario.borrarItemDeCarrito(item);
+        int cantidadProducto = producto.getUnidadesDisponibles();
+        producto.setUnidadesDisponibles(cantidadProducto+cantidad);
     }
 
     public void finalizarCompra(Usuario usuario) {

@@ -75,9 +75,8 @@ public class Front {
                             System.out.println("Opción no válida.");
                         } else {
                             Item itemSeleccionado = items.get(itemIndex - 1);
-                            tienda.eliminarItemDeCarrito(usuario, itemSeleccionado);
-                            int cantidadProducto = productoSeleccionado.getUnidadesDisponibles();
-                            productoSeleccionado.setUnidadesDisponibles(cantidadProducto+cantidad);
+                            tienda.eliminarItemDeCarrito(usuario, itemSeleccionado,productoSeleccionado, cantidad);
+                           
                             System.out.println("Producto eliminado correctamente.");
 
                             // Mostrar resumen actualizado
@@ -89,6 +88,7 @@ public class Front {
                     case 3:
                         continuar = false;
                         repetirMenu = false;
+                        
                         break;
 
                     default:
